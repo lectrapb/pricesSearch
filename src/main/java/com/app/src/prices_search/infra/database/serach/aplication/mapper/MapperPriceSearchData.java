@@ -25,7 +25,6 @@ public class MapperPriceSearchData {
 
     private static PriceProduct getBuildData(PriceProductData priceData) {
         return PriceProduct.builder()
-                .idPrice(priceData.getId())
                 .productId(priceData.getProductId())
                 .brandId(priceData.getBrand().getBrandId())
                 .priceList(priceData.getPriceList())

@@ -15,7 +15,7 @@ import java.util.Date;
 public class PriceProduct {
 
 
-    private Long idPrice;
+
     private Long productId;
     private Long brandId;
     private Long priceList;

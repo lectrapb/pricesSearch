@@ -86,11 +86,9 @@ class SearchPriceUseCaseTest {
                 .build();
         var prices = new ArrayList<PriceProduct>();
         prices.add(PriceProduct.builder()
-                .idPrice(ConstantTest.ID_2)
                 .priority(ConstantTest.HIGH_PRIORITY)
                 .build());
         prices.add(PriceProduct.builder()
-                .idPrice(ConstantTest.ID)
                 .priority(ConstantTest.LOWER_PRIORITY)
                 .build());
 
