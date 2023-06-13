@@ -24,9 +24,9 @@ public enum ConstanSystemException {
 
     private static class SystemCode{
 
-        public static final String ER401 = "ER401";
-        public static final String ER402 = "ER402";
-        public static final String ER403 = "ER403";
+        public static final String ER401 = "ER404-01";
+        public static final String ER402 = "ER404-02";
+        public static final String ER403 = "ER404-03";
     }
 
 

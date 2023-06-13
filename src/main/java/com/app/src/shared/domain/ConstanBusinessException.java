@@ -23,7 +23,7 @@ public enum ConstanBusinessException {
     private static class SystemCode{
 
 
-        public static final String ER_BS = "ERB403";
+        public static final String ER_BS = "ERB404-01";
     }
 
 

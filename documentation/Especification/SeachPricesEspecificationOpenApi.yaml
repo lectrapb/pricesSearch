@@ -1,0 +1,140 @@
+openapi: 3.0.0
+info:
+  title: Search Prices 
+  description: Aplicacion para busqueda de precios 
+  contact:
+    name: Giovanny Porras 
+    url: https://www.linkedin.com/in/giovanny-porras-barbosa-public-profile/
+  version: 1.0.0 
+servers:
+ - url: http://localhost:8080/api/search/prices
+ - url: https://comercial-area.com/api/search/prices
+
+tags:
+- name: "api/token"
+  description: "Validacion y creación id de relación"
+- name: "/api/search/prices"
+  description: "Busqueda de precios"  
+paths:
+
+  /api/search/prices:
+      description: Busqueda de precios por producto marca y fecha
+      get:
+        parameters:
+          - $ref: '#/components/parameters/dateToTestParam' 
+          - $ref: '#/components/parameters/idProductParam'
+          - $ref: '#/components/parameters/brandIdParam'
+        tags:
+        - "/api/search/prices"
+        description:  Busqueda de precios por producto marca y fecha
+        responses:
+            200:
+              description:  Precio del producto
+              content:
+                application/json:
+                  schema:
+                    $ref: '#/components/schemas/Response_search_price_200'
+            400:
+              description: No se encontraron registros
+              content:
+                application/json:
+                  schema:
+                    $ref: '#/components/schemas/Response_fault_parameter_search_400'
+ 
+
+components:
+  parameters:
+    dateToTestParam:
+      in: query
+      name: dateToTest
+      description: Fecha a evaluar 
+      required: true
+      schema:
+         type: string
+         example: 2020-12-31-23.59.59  
+    idProductParam:
+      in: query
+      name: idProduct
+      description: Identificador del producto
+      required: true
+      schema:
+         type: number
+         example: 101
+    brandIdParam:
+      in: header
+      name: brandId
+      description: Identificador de la marca
+      required: true
+      schema:
+         type: string
+         example: ZARA      
+  
+     
+  schemas:
+    Response_search_price_200:
+      type: object
+      properties:
+        data:
+          type: object
+          properties:
+            productId:
+              type: number
+              example: 35455
+            brandId:
+              type: number
+              example: 1
+            priceList:
+              type: number
+              example: 1
+            dateStart:
+              type: string
+              example: "2020-06-14-00.00.00"
+            dateEnd:
+              type: string
+              example: "2020-12-31-23.59.59"
+            price:
+              type: number
+              example: 35.5
+              
+    Response_fault_parameter_search_400:
+        type: object
+        properties:
+          error:
+            type: object
+            properties:
+              id:
+                type: string
+                example: a45d2947-8e88-4e61-9f9c-ae78ac99e323
+              code:
+                type: string
+                example: "ER403"
+              title:
+                type: string
+                example: 'Falla en la trasaccion'
+              detail:
+                type: string
+                example: "Identificador nulo o fuera de rango"
+        example:
+          - id: "b1485b16-e3a3-4f4a-b0ee-9ad9f35d7a40"
+            code:   "ER404-01"
+            title:  "Operacion fallida"
+            detail: "Faltan Parametros Obligatorios"
+            
+          - id: "b1485b16-e3a3-4f4a-b0ee-9ad9f35d7a40"
+            code:   "ER404-02"
+            title:  "Operacion fallida"
+            detail: "La fecha no sigue el formato yyyy-MM-dd HH.mm.ss " 
+          
+          - id: "b1485b16-e3a3-4f4a-b0ee-9ad9f35d7a40"
+            code:   "ER404-03"
+            title:  "Operacion fallida"
+            detail: "Identificador nulo o fuera de rango" 
+          
+          - id: "b1485b16-e3a3-4f4a-b0ee-9ad9f35d7a40"
+            code:   "ERB404-01"
+            title:  "Operacion fallida"
+            detail: "No se encontro data asocida a las entradas"  
+    
+
+                
+   
