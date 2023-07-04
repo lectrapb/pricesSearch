@@ -18,7 +18,7 @@ public class SearchPrice {
 
     public PriceProduct searchByBrandAndDate(PriceProductSearchReq req) {
 
-        List<PriceProduct> prices = searchPrice.findByIdAndDate(MapperPriceSearch
+        var prices = searchPrice.findByIdAndDate(MapperPriceSearch
                 .toProductSerch(req));
         if (prices.isEmpty()) {
             throw new BusinessException(ConstantBusinessException.NOT_FOUND_DATA);
