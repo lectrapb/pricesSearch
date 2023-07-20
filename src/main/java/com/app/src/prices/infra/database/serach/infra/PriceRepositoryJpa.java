@@ -13,12 +13,14 @@ public interface PriceRepositoryJpa extends JpaRepository<PriceProductData, Long
 
 
     @Query(value="SELECT e "+
-            " FROM PriceProductData e WHERE e.productId = :productId AND "+
+            " FROM PriceProductData e  WHERE e.productId = :productId AND "+
             " e.brand.brandId = :brandId AND "+
             " e.startDate <= :dateTest AND e.endDate >= :dateTest AND e.priority = (SELECT MAX(e.priority)  " +
             "FROM PriceProductData e WHERE e.productId = :productId " +
-            "AND  e.brand.brandId = :brandId AND e.startDate <= :dateTest AND e.endDate >= :dateTest)")
+            "AND  e.brand.brandId = :brandId AND e.startDate <= :dateTest AND e.endDate >= :dateTest) ORDER BY e.price ASC")
     List<PriceProductData> searchPrice(@Param("dateTest") Date dateToTest,
                                        @Param("productId") Long productId,
                                        @Param("brandId") Long brandId);
+
+
 }
